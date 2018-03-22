@@ -37,3 +37,6 @@ Depends: R (>= 2.10)
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/choisy/gamar
+BugReports: https://github.com/choisy/gamar/issues
+
