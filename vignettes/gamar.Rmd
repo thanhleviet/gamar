@@ -1,0 +1,228 @@
+---
+title: "Using gamar"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::knit_hooks$set(margin = function(before, options, envir) {
+  if (before) par(mgp = c(1.5, .5, 0), bty = "n", plt = c(.105, .97, .13, .97))
+  else NULL
+})
+
+knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "",
+                      collapse = TRUE, cache = FALSE, autodep = TRUE,
+                      dev.args = list(pointsize = 11), fig.height = 3.5,
+                      fig.width = 4.24725, fig.retina = 2, fig.align = "center")
+```
+
+```{r include = FALSE}
+workspace <- "/Users/choisy/using_gamar"
+if (dir.exists(workspace)) unlink(workspace, recursive = TRUE)
+dir.create(workspace)
+knitr::opts_knit$set(root.dir = workspace)
+rm(list = ls())
+```
+
+
+
+## Introduction
+
+To be able to use `gamar` you need to install GAMA (> 1.7) on your system. You
+can do it from [gama-platform.org](gama-platform.org). You then need to
+install the `gamar` R package, load it and configure it before you can use it.
+The `gamar` package contains 6 functions:
+
+* `defpath` to define the path to the GAMA executable
+* `examples` to manipulate examples from the built-in library
+* `get_gaml` to list the paths to the gaml models files in a hierarchy
+* `get_experiment` to list experiments of a gaml model file
+* `experiment` to create an object of class `experiment`
+* `load_experiment` to load an experiment of a model
+
+## Installing gamar
+
+Before installing `gamar` you need to install the package `devtools` if not
+already installed on your system:
+
+```{r eval = FALSE}
+if (!"devtools" %in% rownames(installed.packages())) install.packages("devtools")
+```
+
+Once `devtools` is installed on your system, you can install `gamar` directly
+from GitHub:
+
+```{r eval = FALSE}
+devtools::install_github("choisy/gamar")
+```
+
+
+## Loading and configuring gamar
+
+With `gamar` installed on your system, you need to load it before using it:
+
+```{r}
+library(gamar)
+```
+
+If you are using OS X or macOS, `gamar` will by default use the
+`/Applications/Gama.app` if it exists. If not, you can manually define the path
+to the GAMA with the `defpath` function:
+
+```{r eval = FALSE}
+defpath("path_to_your_GAMA_folder")
+```
+
+
+## Built-in models library
+
+
+There are a number of built-in examples in the `gamar` package, of which you
+can see the list:
+
+```{r}
+examples()
+```
+
+To use one of these examples, we recommand that you first move it to your local
+directory (by default):
+
+```{r}
+dir()
+examples("sir")
+dir()
+```
+
+or to any other directory of your choice:
+
+```{r}
+examples("sir", "one_directory")
+dir()
+dir("one_directory")
+```
+
+If a file with the same name already exists in the destination directory, the
+name of the copied file is appended a digit making it unique:
+
+```{r}
+examples("sir", "one_directory")
+dir("one_directory")
+```
+
+The minimum that these examples include is a `.gaml` file that specifies the
+model and some experiment(s). Sometimes additional files are also included, for
+examples, shape files defining the space. That's the case for the `predator-prey`
+model. All the files of the model are then contained in a directory:
+
+```{r}
+dir()
+examples("predator-prey")
+dir("predator_prey", recursive = TRUE)
+```
+
+Again, if the name of the directory already exists in the destination directory,
+the name of the directory is appended a digit making it unique:
+
+```{r}
+examples("predator-prey")
+dir()
+```
+
+Last thing about this `examples` function is that you can copied several models
+at the same time:
+
+```{r}
+examples(c("sir", "predator-prey"))
+```
+
+specifying a common destination directory:
+
+```{r}
+examples(c("sir", "predator-prey"), "common_directory")
+dir()
+dir("common_directory")
+```
+
+or a different directory for each model:
+
+```{r}
+examples(c("sir", "predator-prey"), c("directory1", "directory2"))
+dir()
+dir("directory1")
+dir("directory2")
+```
+
+
+## Loading experiments
+
+Listing the GAMA models in a file hierarchy:
+
+```{r}
+(mod <- list_gaml("predator_prey"))
+```
+
+The argument to `get_gaml` is the path to the top of a file hierarchy. By
+default, it's the current directory. Listing the experiments of a GAMA model:
+
+```{r}
+list_experiment(mod)
+```
+
+Loading a model from an experiment:
+
+```{r}
+predprey <- load_experiment("prey_predator", mod)  # creates workgamar with sir_1.xml in it
+```
+
+Similarly with the SIR model:
+
+```{r}
+dir()
+list_experiment("sir.gaml")
+sir_exp <- load_experiment("sir", "sir.gaml")
+```
+
+**TO DO: loading several experiments from a same model GAMA file.**
+
+```{r}
+class(sir_exp)
+```
+
+`print` method:
+
+```{r}
+sir_exp
+```
+
+Underlying `list` structure:
+
+```{r}
+is.list(sir_exp)
+str(sir_exp)
+names(sir_exp)
+```
+
+
+
+## Manipulating experiments
+
+Values of an experiment can be changed as for any list
+
+```{r}
+sir_exp$parameters["I0"]
+sir_exp$parameters["I0"] <- 10
+sir_exp$parameters["I0"]
+```
+
+Editing the model:
+
+```{r eval = FALSE}
+edit_model(sir_exp)
+```
+
+

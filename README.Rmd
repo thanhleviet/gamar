@@ -1,0 +1,58 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, echo = FALSE}
+knitr::knit_hooks$set(margin = function(before, options, envir) {
+  if (before) par(mgp = c(1.5, .5, 0), bty = "n", plt = c(.105, .97, .13, .97))
+  else NULL
+})
+
+knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
+                      collapse = TRUE, cache = FALSE, autodep = TRUE,
+                      dev.args = list(pointsize = 11), fig.height = 3.5,
+                      fig.width = 4.24725, fig.retina = 2,
+                      fig.align = "center", fig.path = "README-")
+```
+
+# gamar
+
+The package `gamar` provides an interface to the GAMA simulation platform 
+([gama-platform.org](gama-platform.org)). It loads gaml files defining models
+and provides facilities to define plans of experiments. It also call the GAMA
+engine to run defined plans of experiments. The simulation results can also be
+loaded into R for subsequent analyses.
+
+## Installation
+
+Before installing `gamar` you need to install the package `devtools` if not
+already installed on your system:
+
+```{r eval = FALSE}
+if (!"devtools" %in% rownames(installed.packages())) install.packages("devtools")
+```
+
+Once `devtools` is installed on your system, you can install `gamar` directly
+from GitHub:
+
+```{r eval = FALSE}
+devtools::install_github("choisy/gamar")
+```
+
+
+## Usage
+
+The package `gamar` contains 6 functions:
+
+* `defpath` to define the path to the GAMA executable
+* `examples` to manipulate examples from the built-in library
+* `list_gaml` to list the paths to the gaml models files in a hierarchy
+* `list_experiment` to list experiments of a gaml model file
+* `experiment` to create an object of class `experiment`
+* `load_experiment` to load an experiment of a model
+
+See articles and vignettes for more details.
