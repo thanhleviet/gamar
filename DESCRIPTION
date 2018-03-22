@@ -39,4 +39,5 @@ Suggests: knitr,
 VignetteBuilder: knitr
 URL: https://github.com/choisy/gamar
 BugReports: https://github.com/choisy/gamar/issues
+Remotes: choisy/mcutils
 
