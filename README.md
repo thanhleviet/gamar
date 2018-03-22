@@ -3,6 +3,10 @@
 gamar
 =====
 
+[![Travis-CI Build Status](https://travis-ci.org/choisy/gamar.svg?branch=master)](https://travis-ci.org/choisy/gamar)
+
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/gamar)](https://cran.r-project.org/package=gamar)
+
 The package `gamar` provides an interface to the GAMA simulation platform ([gama-platform.org](gama-platform.org)). It loads gaml files defining models and provides facilities to define plans of experiments. It also call the GAMA engine to run defined plans of experiments. The simulation results can also be loaded into R for subsequent analyses.
 
 Installation

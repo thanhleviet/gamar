@@ -21,6 +21,10 @@ knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
 
 # gamar
 
+[![Travis-CI Build Status](https://travis-ci.org/choisy/gamar.svg?branch=master)](https://travis-ci.org/choisy/gamar)
+
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/gamar)](https://cran.r-project.org/package=gamar)
+
 The package `gamar` provides an interface to the GAMA simulation platform 
 ([gama-platform.org](gama-platform.org)). It loads gaml files defining models
 and provides facilities to define plans of experiments. It also call the GAMA
