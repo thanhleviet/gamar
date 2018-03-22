@@ -20,6 +20,21 @@ Once `devtools` is installed on your system, you can install `gamar` directly fr
 > devtools::install_github("choisy/gamar")
 ```
 
+Loading and configuring gamar
+-----------------------------
+
+With `gamar` installed on your system, you need to load it before using it:
+
+``` r
+> library(gamar)
+```
+
+If you are using OS X or macOS, `gamar` will by default use the `/Applications/Gama.app` if it exists. If not, you can manually define the path to the GAMA with the `defpath` function:
+
+``` r
+> defpath("path_to_your_GAMA_folder")
+```
+
 Usage
 -----
 

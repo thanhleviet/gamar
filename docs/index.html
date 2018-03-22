@@ -77,6 +77,14 @@
 <p>Once <code>devtools</code> is installed on your system, you can install <code>gamar</code> directly from GitHub:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"choisy/gamar"</span>)</code></pre></div>
 </div>
+<div id="loading-and-configuring-gamar" class="section level2">
+<h2 class="hasAnchor">
+<a href="#loading-and-configuring-gamar" class="anchor"></a>Loading and configuring gamar</h2>
+<p>With <code>gamar</code> installed on your system, you need to load it before using it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(gamar)</code></pre></div>
+<p>If you are using OS X or macOS, <code>gamar</code> will by default use the <code>/Applications/Gama.app</code> if it exists. If not, you can manually define the path to the GAMA with the <code>defpath</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="reference/defpath.html">defpath</a></span>(<span class="st">"path_to_your_GAMA_folder"</span>)</code></pre></div>
+</div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
